@@ -83,7 +83,7 @@ main :: proc() {
 		// Multi-byte characters
 		{
 			strings.repeat("\u2584 ", 4),
-			strings.concatenate([]string{"\u2584 \u2584", "\n",	strings.repeat("\u2584 ", 2)}),
+			strings.concatenate([]string{"\u2584 \u2584", "\n", strings.repeat("\u2584 ", 2)}),
 			4,
 		},
 	}
