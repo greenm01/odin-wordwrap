@@ -13,11 +13,11 @@ NBSP :: 0xA0
 // pathological cases can dramatically reach past the limit, such as a very
 // long word.
 wrap_string :: proc(s: string, lim: uint) -> string {
-	
+
 	buf := new(bytes.Buffer)
-	word_buf  := new(bytes.Buffer)
+	word_buf := new(bytes.Buffer)
 	space_buf := new(bytes.Buffer)
-		
+
 	defer bytes.buffer_destroy(buf)
 	defer bytes.buffer_destroy(word_buf)
 	defer bytes.buffer_destroy(space_buf)
@@ -28,7 +28,7 @@ wrap_string :: proc(s: string, lim: uint) -> string {
 	for char in s {
 		if char == '\n' {
 			if bytes.buffer_length(word_buf) == 0 {
-				if current+space_buf_len > lim {
+				if current + space_buf_len > lim {
 					current = 0
 				} else {
 					current += space_buf_len
@@ -68,7 +68,7 @@ wrap_string :: proc(s: string, lim: uint) -> string {
 			bytes.buffer_write_rune(word_buf, char)
 			word_buf_len += 1
 
-			if current+word_buf_len+space_buf_len > lim && word_buf_len < lim {
+			if current + word_buf_len + space_buf_len > lim && word_buf_len < lim {
 				bytes.buffer_write_rune(buf, '\n')
 				current = 0
 				bytes.buffer_reset(space_buf)
@@ -78,9 +78,9 @@ wrap_string :: proc(s: string, lim: uint) -> string {
 	}
 
 	if bytes.buffer_length(word_buf) == 0 {
-		if current+space_buf_len <= lim {
+		if current + space_buf_len <= lim {
 			b := bytes.buffer_to_bytes(space_buf)
-			bytes.buffer_write(buf, b) 
+			bytes.buffer_write(buf, b)
 		}
 	} else {
 		b := bytes.buffer_to_bytes(space_buf)
