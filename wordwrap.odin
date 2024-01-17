@@ -18,7 +18,7 @@ wrap_string :: proc(s: string, lim: uint) -> string {
 	word_buf := new(bytes.Buffer)
 	space_buf := new(bytes.Buffer)
 
-	defer bytes.buffer_destroy(buf)
+	//defer bytes.buffer_destroy(buf)
 	defer bytes.buffer_destroy(word_buf)
 	defer bytes.buffer_destroy(space_buf)
 
